@@ -2,7 +2,7 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { AlertTriangle, Loader2 } from "lucide-react"
 
-export function DeleteConfirmModal({ isOpen, onClose, product, onDelete }) {
+const DeleteConfirmModal = ({ isOpen, onClose, selectedRow, onDelete }) => {
   const [loading, setLoading] = useState(false)
 
   const handleDelete = async () => {
@@ -12,11 +12,11 @@ export function DeleteConfirmModal({ isOpen, onClose, product, onDelete }) {
       // Simulation d'une API call
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
-      onDelete(product.id)
+      onDelete(selectedRow.id)
       onClose()
 
       // Simulation d'une notification de succès
-      console.log(`Produit ${product.name} supprimé avec succès`)
+      console.log(`Produit ${selectedRow.name} supprimé avec succès`)
     } catch (error) {
       console.error("Erreur lors de la suppression", error)
     } finally {
@@ -24,7 +24,7 @@ export function DeleteConfirmModal({ isOpen, onClose, product, onDelete }) {
     }
   }
 
-  if (!product) return null
+  if (!selectedRow) return null
 
   return (
     <AnimatePresence>
@@ -50,15 +50,15 @@ export function DeleteConfirmModal({ isOpen, onClose, product, onDelete }) {
               <div className="mb-6">
                 <div className="mx-auto w-32 h-32 rounded-xl overflow-hidden border-2 border-base-200 bg-base-100 shadow-sm">
                   <img
-                    src={product.image || "/placeholder.svg?height=128&width=128"}
-                    alt={product.name}
+                    src={selectedRow.image || "/placeholder.svg?height=128&width=128"}
+                    alt={selectedRow.name}
                     className="w-full h-full object-cover transform transition-transform"
                     loading="lazy"
                   />
                 </div>
               </div>
 
-              <h2 className="text-2xl font-bold text-base-content mb-2">Supprimer {product.name} ?</h2>
+              <h2 className="text-2xl font-bold text-base-content mb-2">Supprimer {selectedRow.name} ?</h2>
               <p className="text-base-content/70">Ce produit sera définitivement supprimé du système</p>
             </div>
 
@@ -67,17 +67,17 @@ export function DeleteConfirmModal({ isOpen, onClose, product, onDelete }) {
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div className="text-left">
                     <p className="text-base-content/60">Catégorie</p>
-                    <p className="font-medium text-primary">{product.category}</p>
+                    <p className="font-medium text-primary">{selectedRow.category}</p>
                   </div>
                   <div className="text-left">
                     <p className="text-base-content/60">Stock actuel</p>
-                    <p className="font-medium text-primary">{product.stock} unités</p>
+                    <p className="font-medium text-primary">{selectedRow.stock} unités</p>
                   </div>
                 </div>
                 <div className="mt-3 pt-3 border-t border-base-300">
                   <div className="text-left">
                     <p className="text-base-content/60">Prix</p>
-                    <p className="font-medium text-primary">€{product.price.toFixed(2)}</p>
+                    <p className="font-medium text-primary">€{selectedRow.price.toFixed(2)}</p>
                   </div>
                 </div>
               </div>
@@ -107,3 +107,5 @@ export function DeleteConfirmModal({ isOpen, onClose, product, onDelete }) {
     </AnimatePresence>
   )
 }
+
+export default DeleteConfirmModal

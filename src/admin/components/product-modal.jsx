@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Upload, Loader2 } from "lucide-react"
@@ -17,7 +15,7 @@ const initialFormState = {
 
 const categories = ["Électronique", "Vêtements", "Maison", "Sport", "Livres", "Beauté", "Automobile", "Jardin"]
 
-export function ProductModal({ isOpen, onClose, product, onSave }) {
+const ProductModal = ({ isOpen, onClose, product, onSave })=> {
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState(initialFormState)
   const [imagePreview, setImagePreview] = useState(null)
@@ -351,3 +349,6 @@ const UploadInput = ({ onImageChange }) => (
     <input type="file" className="hidden" accept="image/jpeg,image/png,image/webp" onChange={onImageChange} />
   </label>
 )
+
+
+export default ProductModal

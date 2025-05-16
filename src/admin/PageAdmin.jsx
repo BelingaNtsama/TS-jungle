@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Package, ShoppingCart, Users, Menu, Home, Bell, LogOut } from "lucide-react";
+import { Package, ShoppingCart, Users, Menu, Home, Bell} from "lucide-react";
 import Dashboard from "@/admin/pages/dashboard";
 import Orders from "@/admin/pages/orders";
 import Products from "@/admin/pages/products";

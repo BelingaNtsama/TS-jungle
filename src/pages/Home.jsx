@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
-import { ANIMATION_VARIANTS } from "../utils/animations";
-import Header from "../layouts/Header";
-import Description from "../layouts/Description";
-import Caroussel from "../components/Home/Carrousel";
-import Shop from "../layouts/Shop";
+import { ANIMATION_VARIANTS } from "@/utils/animations";
+import Header from "@/layouts/Header";
+import Description from "@/layouts/Description";
+import Caroussel from "@/components/Home/Carrousel";
+import Shop from "@/layouts/Shop";
 
 const Home = () => {
     return (
         <motion.div
-            className="flex min-h-screen flex-col"
+            className="flex min-h-screen flex-col" 
             initial="hidden"
             animate="visible"
             variants={ANIMATION_VARIANTS.container}

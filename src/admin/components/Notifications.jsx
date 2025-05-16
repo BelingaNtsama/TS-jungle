@@ -101,7 +101,7 @@ export function Notifications({ isOpen, onClose }) {
     setNotifications(mockNotifications)
 
     // Simulation d'une nouvelle notification après 3 secondes
-    const timer = setTimeout(() => {
+    const timer = setInterval(() => {
       const newNotification = {
         id: Date.now(),
         type: "order",
