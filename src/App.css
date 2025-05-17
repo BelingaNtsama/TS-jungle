@@ -1,3 +1,4 @@
+
 @import "tailwindcss";
 @plugin "daisyui";
 
@@ -36,5 +37,4 @@
   --depth: 0;
   --noise: 1;
 }
-
 
