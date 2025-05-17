@@ -1,71 +1,34 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { Github, Moon, Sun, Heart } from 'lucide-react'
-import { toast, Toaster } from 'sonner'
-import { twMerge } from 'tailwind-merge'
-import clsx from 'clsx'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
 
 function App() {
-  const [theme, setTheme] = useState('light')
-
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light')
-    toast.success(`Theme changed to ${theme === 'light' ? 'dark' : 'light'}`)
-  }
-
-  const buttonClasses = clsx(
-    'btn',
-    'gap-2',
-    {
-      'btn-primary': theme === 'light',
-      'btn-secondary': theme === 'dark'
-    }
-  )
+  const [count, setCount] = useState(0)
 
   return (
-    <div data-theme={theme} className="min-h-screen p-8 bg-base-100">
-      <Toaster position="top-right" richColors />
-      
-      <div className="navbar bg-base-200 rounded-box mb-8">
-        <div className="flex-1">
-          <button className="btn btn-ghost text-xl">DaisyUI Demo</button>
-        </div>
-        <div className="flex-none">
-          <button className="btn btn-circle" onClick={toggleTheme}>
-            {theme === 'light' ? <Moon /> : <Sun />}
-          </button>
-        </div>
+    <>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="card w-96 bg-base-200 shadow-xl mx-auto"
-      >
-        <div className="card-body">
-          <h2 className="card-title">Awesome Libraries!</h2>
-          <p>Using DaisyUI, Framer Motion, Lucide React, and more...</p>
-          
-          <div className="flex gap-2 mt-4">
-            <button 
-              className={twMerge(buttonClasses, 'btn-primary')}
-              onClick={() => toast.success('Liked!')}
-            >
-              <Heart />
-              Like
-            </button>
-            
-            <button 
-              className={twMerge(buttonClasses, 'btn-secondary')}
-              onClick={() => toast.info('Opening GitHub...')}
-            >
-              <Github />
-              GitHub
-            </button>
-          </div>
-        </div>
-      </motion.div>
-    </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.jsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
   )
 }
 
