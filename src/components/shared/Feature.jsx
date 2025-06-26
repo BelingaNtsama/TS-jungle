@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 function Feature({ Icon, title, description }) {
     return (
       <div className="flex items-center space-x-4">

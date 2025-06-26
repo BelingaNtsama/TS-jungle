@@ -1,5 +1,5 @@
 import { Truck, Shield, Clock } from 'lucide-react';
-import Feature from "../components/shared/Feature"
+import Feature from "../components/shared/Feature";
 
 export default function Description() {
   const features = [
