@@ -160,7 +160,7 @@ const Customers = () => {
       cellRenderer: CustomerInfoRenderer,
       filter: 'agTextColumnFilter',
       flex: 1,
-      minWidth: 250,
+      minWidth: 350,
       pinned: 'left'
     },
     {
@@ -169,7 +169,7 @@ const Customers = () => {
       filter: false,
       sortable: false,
       flex: 1.5,
-      minWidth: 280
+      minWidth: 220
     },
     {
       field: 'orders',

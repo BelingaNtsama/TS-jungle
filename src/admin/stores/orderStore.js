@@ -1,138 +1,113 @@
-import { create } from 'zustand';
-import axiosInstance from "@/services/axiosInstance"
+import {create} from 'zustand';
+import axiosInstance from '@/services/axiosInstance';
 
-const statusConfig = {
-  Delivered: { icon: 'CheckCircle', color: 'green' },
-  Shipped: { icon: 'Truck', color: 'blue' },
-  Processing: { icon: 'Package', color: 'yellow' },
-  Pending: { icon: 'Clock', color: 'orange' },
-  Cancelled: { icon: 'AlertCircle', color: 'red' }
-};
-
-const priorityConfig = {
-  High: 'red',
-  Normal: 'blue',
-  Low: 'gray'
-};
-
-const useOrderStore = create((set, get) => ({
-    orders: [],
-    filteredOrders: [],
-    stats: {},
-    loading: false,
-    error: null,
-    searchText: '',
-    statusFilter: 'All',
-    dateFilter: null,
-    pagination: {
-      currentPage: 1,
-      itemsPerPage: 10,
-      totalPages: 1
-    },
-
-    // Actions
-    setSearchText: (text) => {
-      set({ searchText: text, pagination: { ...get().pagination, currentPage: 1 } });
-      get().applyFilters();
-    },
-    setStatusFilter: (status) => {
-      set({ statusFilter: status, pagination: { ...get().pagination, currentPage: 1 } });
-      get().applyFilters();
-    },
-    setDateFilter: (date) => {
-      set({ dateFilter: date, pagination: { ...get().pagination, currentPage: 1 } });
-      get().applyFilters();
-    },
-    setPage: (page) => set({ pagination: { ...get().pagination, currentPage: page } }),
-
-    // Fetch data from API
-    fetchOrders: async () => {
-      set({ loading: true, error: null });
-      try {
-        const response = await axiosInstance.get("/admin/orders")
-        const data = await response.data
-        
-        set({
-          orders: data,
-          loading: false,
-          filteredOrders: data,
-          stats: get().calculateStats(data)
-        });
-      } catch (error) {
-        set({ error: error.message, loading: false });
-      }
-    },
-
-    // Filter logic
-    applyFilters: () => {
-      const { orders, searchText, statusFilter, dateFilter } = get();
+ const useOrderStore = create((set) => ({
+  // État initial
+  orders: [],
+  loading: false,
+  error: null,
+  stats: {
+    total: 0,
+    delivered: 0,
+    processing: 0,
+    canceling: 0,
+    totalRevenue: 0
+  },
+  
+  // Action pour récupérer les commandes
+  fetchOrders: async () => {
+    set({ loading: true, error: null });
+    try {
+      const response = await axiosInstance.get('/admin/orders');
+      const orders = response.data;
       
-      let filtered = [...orders];
-      
-      // Text search
-      if (searchText) {
-        const searchLower = searchText.toLowerCase();
-        filtered = filtered.filter(order => 
-          Object.values(order).some(
-            val => val?.toString().toLowerCase().includes(searchLower)
-          )
-        );
-      }
-      
-      // Status filter
-      if (statusFilter !== 'All') {
-        filtered = filtered.filter(order => order.status === statusFilter);
-      }
-      
-      // Date filter
-      if (dateFilter) {
-        filtered = filtered.filter(order => 
-          new Date(order.date).toDateString() === new Date(dateFilter).toDateString()
-        );
-      }
-      
-      // Update pagination
-      const totalPages = Math.ceil(filtered.length / get().pagination.itemsPerPage);
-      
-      set({ 
-        filteredOrders: filtered,
-        stats: get().calculateStats(filtered),
-        pagination: {
-          ...get().pagination,
-          totalPages: totalPages || 1,
-          currentPage: Math.min(get().pagination.currentPage, totalPages || 1)
-        }
-      });
-    },
-
-    // Calculate statistics
-    calculateStats: (orders) => {
-      const total = orders.length;
-      const statusCounts = orders.reduce((acc, order) => {
-        acc[order.status] = (acc[order.status] || 0) + 1;
-        return acc;
-      }, {});
-      
-      const totalRevenue = orders.reduce((sum, order) => sum + order.total, 0);
-      
-      return {
-        total,
-        totalRevenue,
-        ...statusCounts
+      // Calcul des statistiques
+      const stats = {
+        total: orders.length,
+        delivered: orders.filter(o => o.status === 'Delivered').length,
+        processing: orders.filter(o => o.status === 'Processing').length,
+        canceling: orders.filter(o => o.status === 'Canceling').length,
+        totalRevenue: orders.reduce((sum, order) => sum + order.total, 0)
       };
-    },
-
-    // Get paginated data
-    getPaginatedOrders: () => {
-      const { filteredOrders, pagination } = get();
-      const start = (pagination.currentPage - 1) * pagination.itemsPerPage;
-      const end = start + pagination.itemsPerPage;
-      return filteredOrders.slice(start, end);
-    },
-
-    // Render helpers
-    getStatusStyle: (status) => statusConfig[status] || { icon: 'Clock', color: 'gray' },
-    getPriorityColor: (priority) => priorityConfig[priority] || 'gray'
-  }))
+      
+      set({ orders, stats, loading: false });
+    } catch (error) {
+      set({ 
+        error: error.response?.data?.message || error.message, 
+        loading: false 
+      });
+    }
+  },
+  
+  // Action pour mettre à jour une commande
+  updateOrder: async (orderId, updates) => {
+    try {
+      // Optimistic update
+      set(state => ({
+        orders: state.orders.map(order => 
+          order.id === orderId ? { ...order, ...updates } : order
+        )
+      }));
+      
+      // Appel API
+      await axiosInstance.patch(`/admin/orders/${orderId}`, updates);
+      
+      // Recalcul des stats après mise à jour
+      set(state => {
+        const updatedOrders = state.orders.map(order => 
+          order.id === orderId ? { ...order, ...updates } : order
+        );
+        
+        const stats = {
+          total: updatedOrders.length,
+          delivered: updatedOrders.filter(o => o.status === 'Delivered').length,
+          processing: updatedOrders.filter(o => o.status === 'Processing').length,
+          canceling: updatedOrders.filter(o => o.status === 'Canceling').length,
+          totalRevenue: updatedOrders.reduce((sum, order) => sum + order.total, 0)
+        };
+        
+        return { orders: updatedOrders, stats };
+      });
+      
+      return true;
+    } catch (error) {
+      // Rollback en cas d'erreur
+      set(state => ({
+        orders: state.orders.map(order => 
+          order.id === orderId 
+            ? { ...order, ...state.orders.find(o => o.id === orderId) } 
+            : order
+        )
+      }));
+      
+      console.error('Update failed:', error);
+      return false;
+    }
+  },
+  
+  // Action pour annuler une commande
+  cancelOrder: async (orderId) => {
+    return useOrderStore.getState().updateOrder(orderId, { status: 'Cancelled' });
+  },
+  
+  // Action pour marquer comme livré
+  markAsDelivered: async (orderId) => {
+    return useOrderStore.getState().updateOrder(orderId, { status: 'Delivered' });
+  },
+  
+  // Reset du store
+  reset: () => set({ 
+    orders: [], 
+    loading: false, 
+    error: null, 
+    stats: {
+      total: 0,
+      delivered: 0,
+      processing: 0,
+      canceling: 0,
+      totalRevenue: 0
+    }
+  })
+}));
 
 export default useOrderStore;
