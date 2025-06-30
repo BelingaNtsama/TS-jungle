@@ -2,13 +2,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, Home, ShoppingCart, Package, Users, Bell } from "lucide-react";
-import Dashboard from "@/admin/pages/dashboard";
-import Orders from "@/admin/pages/orders";
-import Products from "@/admin/pages/products";
-import Customers from "@/admin/pages/customers";
+import Dashboard from "@/admin/pages/Dashboard";
+import Orders from "@/admin/pages/Orders";
+import Products from "@/admin/pages/Products";
+import Customers from "@/admin/pages/Customers";
 import Notifications from "@/admin/components/notifications";
 import ProfileSidebar from "@/admin/components/SideBar";
 import  useNotificationStore  from "./stores/notificationStore";
+import AiChat from "./components/Chatbot";
 
 const menuItems = [
   { id: "dashboard", title: "Dashboard", icon: Home },
@@ -39,6 +40,7 @@ export default function AdminPage() {
   };
 
   return (
+    <>
     <div className="drawer lg:drawer-open">
       <input
         id="drawer-toggle"
@@ -94,5 +96,7 @@ export default function AdminPage() {
       </div>
       <Notifications isOpen={showNotifications} onClose={() => setShowNotifications(false)} />
     </div>
+    <AiChat/>
+    </>
   );
 }
