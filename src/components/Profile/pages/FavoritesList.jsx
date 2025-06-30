@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { motion } from "framer-motion";
 import { Heart, ShoppingCart } from "lucide-react";
 import SkeletonLoader from "@/components/shared/SkeletonLoader";
-import useFavoritesStore from "@/stores/FavoritesStore";
+import useFavoritesStore from "@/stores/favoritesStore";
 import { formatPrice } from "@/utils/formatters";
 import { toast } from "sonner";
 
