@@ -1,7 +1,7 @@
 // src/pages/OrderHistoryPage.jsx
 import { useState } from "react"
 import SkeletonLoader from "@/components/shared/SkeletonLoader"
-import { useOrders } from "@/hooks/profile/order/useOrders"
+import { useOrders } from "@/hooks/Profile/order/useOrders"
 import EmptyOrders from "@/components/Profile/order/EmptyOrders"
 import OrdersList from "@/components/Profile/order/OrdersList"
 import OrderDetailsModal from "@/components/Profile/order/OrderDetailsModal"

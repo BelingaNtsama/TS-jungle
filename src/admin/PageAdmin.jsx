@@ -6,7 +6,7 @@ import Dashboard from "@/admin/pages/Dashboard";
 import Orders from "@/admin/pages/Orders";
 import Products from "@/admin/pages/Products";
 import Customers from "@/admin/pages/Customers";
-import Notifications from "@/admin/components/notifications";
+import Notifications from "@/admin/components/Notifications";
 import ProfileSidebar from "@/admin/components/SideBar";
 import  useNotificationStore  from "./stores/notificationStore";
 import AiChat from "./components/Chatbot";
