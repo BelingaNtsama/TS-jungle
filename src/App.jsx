@@ -27,7 +27,7 @@ const ProtectedLayout = ({ children }) => {
   );
 };
 
-function App() {
+const App = () => {
   return (
     <Suspense fallback={
       <div className="flex items-center justify-center min-h-screen">
