@@ -1,12 +1,12 @@
 // src/pages/AddressManager.jsx
 import { useState } from "react"
 import SkeletonLoader from "@components/shared/SkeletonLoader"
-import useAddresses from "@hooks/Profile/address/useAddresses"
+import useAddresses from "@hooks/profile/address/useAddresses"
 import CardLayout from "@layouts/CardLayout"
-import AddressList from "@components/Profile/address/AddressList"
-import AddressButton from "@components/Profile/address/AdressButton"
-import AddressModal from "@components/Profile/address/AddressModal"
-import { useAddressForm } from "@hooks/Profile/address/useAddressForm"
+import AddressList from "@components/profile/address/AddressList"
+import AddressButton from "@components/profile/address/AdressButton"
+import AddressModal from "@components/profile/address/AddressModal"
+import { useAddressForm } from "@hooks/profile/address/useAddressForm"
 import { toast } from "sonner"
 
 export default function AddressManager() {
