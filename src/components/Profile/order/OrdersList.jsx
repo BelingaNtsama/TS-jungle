@@ -1,7 +1,7 @@
 // src/components/orders/OrdersList.jsx
 import OrderCard from "./OrderCard"
 import { motion } from "framer-motion"
-import { ANIMATION_VARIANTS } from "@/utils/animations"
+import { ANIMATION_VARIANTS } from "@utils/animations"
 
 export default function OrdersList({ orders, onViewDetails, onReorder }) {
   return (

@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { validateAddressForm } from '@/utils/validations'; // Adjust the import path as necessary
+import { validateAddressForm } from '@utils/validations'; // Adjust the import path as necessary
 
 const DEFAULT_ADDRESS = {
   name: "",

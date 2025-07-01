@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { User, Package, MapPin, CreditCard, Heart, LogOut } from "lucide-react";
 import { useNavigate } from "react-router";
-import axiosInstance from "@/services/axiosInstance";
+import axiosInstance from "@services/axiosInstance";
 import { toast } from "sonner";
 
 const menuItems = [

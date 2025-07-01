@@ -3,12 +3,12 @@ import { motion, AnimatePresence } from "framer-motion"
 import LoadindSpinner from '../shared/LoadingSpinner'
 
 // Chargement différé des composants
-const ProfileSidebar = lazy(() => import("./Sidebar"))
-const ProfileInfo = lazy(() => import("./pages/ProfileInfo"))
-const OrderHistory = lazy(() => import("./pages/OrderHistory"))
-const AddressManager = lazy(() => import("./pages/AddressManager"))
-const PaymentMethods = lazy(() => import("./pages/PaymentMethods"))
-const FavoritesList = lazy(() => import("./pages/FavoritesList"))
+const ProfileSidebar = lazy(() => import("@components/profile/Sidebar"))
+const ProfileInfo = lazy(() => import("@components/profile/pages/ProfileInfo"))
+const OrderHistory = lazy(() => import("@components/profile/pages/OrderHistory"))
+const AddressManager = lazy(() => import("@components/profile/pages/AddressManager"))
+const PaymentMethods = lazy(() => import("@components/profile/pages/PaymentMethods"))
+const FavoritesList = lazy(() => import("@components/profile/pages/FavoritesList"))
 
 
 // Animations

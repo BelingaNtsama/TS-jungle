@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import  useOrderStore from '@/admin/stores/orderStore';
+import  useOrderStore from '@admin/stores/orderStore';
 import { provideGlobalGridOptions } from 'ag-grid-community';
 
 // Mark all grids as using legacy themes

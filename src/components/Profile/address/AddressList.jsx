@@ -1,7 +1,7 @@
 // src/components/address/AddressList.jsx
 import AddressCard from "./AddressCard"
 import { motion } from "framer-motion"
-import { ANIMATION_VARIANTS } from "@/utils/animations"
+import { ANIMATION_VARIANTS } from "@utils/animations"
 
 export default function AddressList({
   addresses,

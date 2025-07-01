@@ -21,7 +21,7 @@ import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 ModuleRegistry.registerModules([AllCommunityModule]) 
 
-import useProductsStore from '@/admin/stores/plantStore';
+import useProductsStore from '@admin/stores/plantStore';
 
 // Composant pour l'image avec fallback
 const ImageRenderer = ({ value }) => (

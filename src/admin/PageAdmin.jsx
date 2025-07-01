@@ -2,13 +2,13 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, Home, ShoppingCart, Package, Users, Bell } from "lucide-react";
-import Dashboard from "@/admin/pages/Dashboard";
-import Orders from "@/admin/pages/Orders";
-import Products from "@/admin/pages/Products";
-import Customers from "@/admin/pages/Customers";
-import Notifications from "@/admin/components/Notifications";
-import ProfileSidebar from "@/admin/components/SideBar";
-import  useNotificationStore  from "./stores/notificationStore";
+import Dashboard from "@admin/pages/Dashboard";
+import Orders from "@admin/pages/Orders";
+import Products from "@admin/pages/Products";
+import Customers from "@admin/pages/Customers";
+import Notifications from "@admin/components/Notifications";
+import ProfileSidebar from "@admin/components/SideBar";
+import  useNotificationStore  from "@admin/stores/notificationStore";
 import AiChat from "./components/Chatbot";
 
 const menuItems = [

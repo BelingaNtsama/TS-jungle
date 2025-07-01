@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import useUserStore from '@/stores/userStore';
-import Home from '@/pages/Home';
+import useUserStore from '@stores/userStore';
+import Home from '@pages/Home';
 import { Leaf } from 'lucide-react';
 
 const RedirectPage = () => {

@@ -13,7 +13,7 @@ import {
   DollarSign,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import useCustomerStore from '@/admin/stores/customerStore';
+import useCustomerStore from '@admin/stores/customerStore';
 
 // Variantes d'animation
 const containerVariants = {

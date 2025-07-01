@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import usePaymentStore from "@/stores/paymentStore"
+import usePaymentStore from "@stores/paymentStore"
 
 export const usePaymentMethods = () => {
   const {

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import axiosInstance from "@/services/axiosInstance";
+import axiosInstance from "@services/axiosInstance";
 
 const useFavoritesStore = create(
   devtools(

@@ -1,4 +1,4 @@
-import axiosInstance from "@/services/axiosInstance";
+import axiosInstance from "@services/axiosInstance";
 
 export default function GoogleAuthButton({loading}) {
  

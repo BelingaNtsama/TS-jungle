@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { ANIMATION_VARIANTS } from "@/utils/animations";
-import Header from "@/layouts/Header";
-import Description from "@/layouts/Description";
-import Caroussel from "@/components/Home/Carrousel";
-import Shop from "@/layouts/Shop";
+import { ANIMATION_VARIANTS } from "@utils/animations";
+import Header from "@layouts/Header";
+import Description from "@layouts/Description";
+import Caroussel from "@components/Home/Carrousel";
+import Shop from "@layouts/Shop";
 
 const Home = () => {
     return (

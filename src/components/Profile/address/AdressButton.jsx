@@ -1,7 +1,7 @@
 // src/components/address/AddAddressButton.jsx
 import { motion } from "framer-motion"
 import { Plus } from "lucide-react"
-import { ANIMATION_VARIANTS } from "@/utils/animations"
+import { ANIMATION_VARIANTS } from "@utils/animations"
 
 export default function AddressButton({ onClick }) {
   return (

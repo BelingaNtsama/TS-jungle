@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { DollarSign, ShoppingCart, Users, Package, TrendingDown, TrendingUp } from "lucide-react"
 import { Bar, Line, Doughnut } from "react-chartjs-2"
-import axiosInstance from "@/services/axiosInstance"
+import axiosInstance from "@services/axiosInstance"
 
 const useDashboardStore = create((set, get) => ({
   metrics: null,

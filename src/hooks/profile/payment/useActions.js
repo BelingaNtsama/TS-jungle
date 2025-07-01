@@ -1,6 +1,6 @@
 // src/hooks/usePaymentActions.js
 import { useCallback } from "react"
-import { usePaymentMethods } from "@/hooks/profile/payment/useMethods"
+import { usePaymentMethods } from "@hooks/profile/payment/useMethods"
 import { toast } from "sonner"
 
 export function usePaymentActions() {

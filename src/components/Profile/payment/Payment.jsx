@@ -2,11 +2,11 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Loader2, ShieldCheck, Plus } from "lucide-react";
-import usePaymentStore from "@/stores/paymentStore";
-import usePanierStore from "@/stores/panierStore";
-import PaymentMethodModal from "@/components/Profile/payment/PaymentMethodModal";
-import PaymentMethodCard from "@/components/Profile/payment/PaymentMethodCard";
-import { getBrandIcon } from "@/utils/constants";
+import usePaymentStore from "@stores/paymentStore";
+import usePanierStore from "@stores/panierStore";
+import PaymentMethodModal from "@components/Profile/payment/PaymentMethodModal";
+import PaymentMethodCard from "@components/Profile/payment/PaymentMethodCard";
+import { getBrandIcon } from "@utils/constants";
 
 // Composant principal pour gérer le paiement
 export function Payment({ onSuccess, onCancel }) {

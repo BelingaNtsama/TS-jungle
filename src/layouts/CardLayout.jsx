@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import { ANIMATION_VARIANTS } from "@/utils/constants"
+import { ANIMATION_VARIANTS } from "@utils/constants"
 
 export default function CardLayout({ title, description, children }) {
   return (

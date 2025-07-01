@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
-import Metric from "@/admin/components/dashboard/Metric"
-import Graphic from "@/admin/components/dashboard/Graphic"
-import useDashboardStore from "@/admin/stores/dashboardStore"
+import Metric from "@admin/components/dashboard/Metric"
+import Graphic from "@admin/components/dashboard/Graphic"
+import useDashboardStore from "@admin/stores/dashboardStore"
 import { useEffect } from "react"
 import {
   Chart as ChartJS,

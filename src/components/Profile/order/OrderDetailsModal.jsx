@@ -1,8 +1,8 @@
 // src/components/orders/OrderDetailsModal.jsx
 import { motion } from "framer-motion"
 import { RotateCcw } from "lucide-react"
-import { getStatusBadge } from "@/utils/formatters"
-import { formatPrice } from "@/utils/formatters"
+import { getStatusBadge } from "@utils/formatters"
+import { formatPrice } from "@utils/formatters"
 
 export default function OrderDetailsModal({ isOpen, onClose, order, onReorder }) {
   if (!order) return null

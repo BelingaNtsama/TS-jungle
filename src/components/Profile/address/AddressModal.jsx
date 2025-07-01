@@ -1,6 +1,6 @@
 // src/components/address/AddressModal.jsx
 import { useForm } from "react-hook-form"
-import { COUNTRIES } from "@/utils/constants"
+import { COUNTRIES } from "@utils/constants"
 
 export default function AddressModal({
   isOpen,

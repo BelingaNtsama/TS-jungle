@@ -1,6 +1,6 @@
 import { create } from "zustand"
 import { devtools } from "zustand/middleware"
-import axiosInstance from "@/services/axiosInstance"
+import axiosInstance from "@services/axiosInstance"
 
 const OrderStore = create(
   devtools(

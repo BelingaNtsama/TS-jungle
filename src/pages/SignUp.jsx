@@ -9,16 +9,16 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { toast } from 'sonner';
-import axiosInstance from '@/services/axiosInstance';
+import axiosInstance from '@services/axiosInstance';
 
 // Import des composants
-import AuthFormInput from '@/components/auth/register/AuthFormInput';
-import StepIndicator from '@/components/auth/register/StepIndicator';
-import FormCard from '@/components/auth/register/FormCard';
-import ProfileImageUploader from '@/components/auth/register/ProfileImageUpload';
-import FormNavigation from '@/components/auth/register/FormNavigation';
-import PreferenceToggleCard from '@/components/auth/register/PreferenceToggleCard';
-import SuccessStep from '@/components/auth/register/SuccessStep';
+import AuthFormInput from '@components/auth/register/AuthFormInput';
+import StepIndicator from '@components/auth/register/StepIndicator';
+import FormCard from '@components/auth/register/FormCard';
+import ProfileImageUploader from '@components/auth/register/ProfileImageUpload';
+import FormNavigation from '@components/auth/register/FormNavigation';
+import PreferenceToggleCard from '@components/auth/register/PreferenceToggleCard';
+import SuccessStep from '@components/auth/register/SuccessStep';
 
 const addressFields = [
   {

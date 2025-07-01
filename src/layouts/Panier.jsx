@@ -1,11 +1,11 @@
 import { X } from 'lucide-react';
-import PanierStore from '@/stores/panierStore';
-import CartItem from '@/components/Home/shop/CartItem';
-import CartHeader from '@/components//Home/shop/CartHeader';
-import CartAdditionalInfo from '@/components//Home/shop/CartAdditionalInfo';
-import CartSummary from '@/components//Home/shop/CartSummary';
-import { PaymentModal } from '@/components/Profile/payment/PaymentModal';
-import Skeleton from '@/components/shared/Skeleton';
+import PanierStore from '@stores/panierStore';
+import CartItem from '@components/home/shop/CartItem';
+import CartHeader from '@components/home/shop/CartHeader';
+import CartAdditionalInfo from '@components//home/shop/CartAdditionalInfo';
+import CartSummary from '@components//home/shop/CartSummary';
+import { PaymentModal } from '@components/Profile/payment/PaymentModal';
+import Skeleton from '@components/shared/Skeleton';
 
 import { useState } from 'react';
 

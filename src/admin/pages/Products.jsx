@@ -1,6 +1,6 @@
-import { Header } from '../components/Header';
+import { Header } from '@admin/components/Header';
 import  ProductsTable  from '../components/ProductsTable';
-import  AddProductModal  from '../components/product-modal';
+import  AddProductModal  from '@admin/components/product-modal';
 import { useState } from 'react';
 
 const Products = () => {

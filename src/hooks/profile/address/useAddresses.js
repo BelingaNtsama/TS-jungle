@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import useAddressesStore from "@/stores/adressesStore"
+import useAddressesStore from "@stores/adressesStore"
 
 export const useAddresses = () => {
   const {

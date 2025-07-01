@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { toast } from 'sonner';
-import axiosInstance from "@/services/axiosInstance"
+import axiosInstance from "@services/axiosInstance"
 
 const useProductsStore = create((set) => ({
   products: [],

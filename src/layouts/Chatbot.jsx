@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import axiosInstance from '@/services/axiosInstance';
+import axiosInstance from '@services/axiosInstance';
 import {
   MessageSquare,
   Send,

@@ -3,13 +3,13 @@ import { Link } from "react-router";
 import {  Key, Wand2 } from "lucide-react";
 import { Toaster, toast } from "sonner";
 
-import axiosInstance from "@/services/axiosInstance";
-import AuthMethodTabs from "@/components/auth/login/AuthMethodTabs";
-import AuthFormInput from "@/components/auth/login/AuthFormInput";
-import AuthSubmitButton from "@/components/auth/login/AuthSubmitButton";
-import AuthToggleMethod from "@/components/auth/login/AuthToggleMethod";
-import GoogleAuthButton from "@/components/shared/GoogleOauthButon";
-import SuccessStep from "@/components/auth/register/SuccessStep";
+import axiosInstance from "@services/axiosInstance";
+import AuthMethodTabs from "@components/auth/login/AuthMethodTabs";
+import AuthFormInput from "@components/auth/login/AuthFormInput";
+import AuthSubmitButton from "@components/auth/login/AuthSubmitButton";
+import AuthToggleMethod from "@components/auth/login/AuthToggleMethod";
+import GoogleAuthButton from "@components/shared/GoogleOauthButon";
+import SuccessStep from "@components/auth/register/SuccessStep";
 
 
 const LogIn = () => {

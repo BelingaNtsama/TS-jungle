@@ -1,5 +1,5 @@
 // src/utils/formatters.js
-import { ORDER_STATUS } from "@/utils/constants"
+import { ORDER_STATUS } from "@utils/constants"
 
 
 export function getStatusBadge(status) {

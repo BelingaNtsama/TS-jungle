@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import axiosInstance from "@/services/axiosInstance";
-import usePanierStore from "@/stores/panierStore";
+import axiosInstance from "@services/axiosInstance";
+import usePanierStore from "@stores/panierStore";
 
 const usePaymentStore = create(
   devtools(

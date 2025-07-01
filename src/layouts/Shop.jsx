@@ -2,11 +2,11 @@
 // components/PlantDemo.jsx
 import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import Skeleton from '@/components/shared/Skeleton';
-import useUIStore from '@/stores/plantStore';
-import SearchFilter from '@/components/Home/shop/SearchAndFilter';
-import PlantGrid from '@/components/Home/shop/PlantGrid';
-import Pagination from '@/components/Home/shop/Pagination';
+import Skeleton from '@components/shared/Skeleton';
+import useUIStore from '@stores/plantStore';
+import SearchFilter from '@components/Home/shop/SearchAndFilter';
+import PlantGrid from '@components/Home/shop/PlantGrid';
+import Pagination from '@components/Home/shop/Pagination';
 
 const ITEMS_PER_PAGE = 3;
 

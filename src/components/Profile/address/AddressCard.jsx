@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { Edit, Trash2 } from "lucide-react"
-import { ANIMATION_VARIANTS } from "@/utils/animations"
+import { ANIMATION_VARIANTS } from "@utils/animations"
 
 export default function AddressCard({
   address,

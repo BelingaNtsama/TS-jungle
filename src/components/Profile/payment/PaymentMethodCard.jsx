@@ -1,7 +1,7 @@
 // Composant pour afficher une méthode de paiement
 import {motion} from "framer-motion";
 import { Check, Trash2 } from "lucide-react";
-import { getBrandIcon } from "@/utils/constants";
+import { getBrandIcon } from "@utils/constants";
 
 const PaymentMethodCard = ({ method, isSelected, onSelect, onDelete }) => {
   return (

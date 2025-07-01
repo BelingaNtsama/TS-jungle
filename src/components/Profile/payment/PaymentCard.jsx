@@ -1,8 +1,8 @@
 // src/components/payments/PaymentCard.jsx
 import { motion } from "framer-motion"
-import { ANIMATION_VARIANTS } from "@/utils/animations"
+import { ANIMATION_VARIANTS } from "@utils/animations"
 import { Trash2 } from "lucide-react"
-import { CARD_BRANDS, PAYMENT_TYPES } from "@/utils/constants"
+import { CARD_BRANDS, PAYMENT_TYPES } from "@utils/constants"
 
 export default function PaymentCard({
   method,

@@ -3,18 +3,18 @@ import { Suspense, lazy } from 'react';
 import { Toaster } from 'sonner';
 import './App.css';
 
-const Home = lazy(() => import('@/pages/Home'));
-const LogIn = lazy(() => import('@/pages/LogIn'));
-const NotFound = lazy(() => import('@/pages/NotFound'));
-const SignUp = lazy(() => import('@/pages/SignUp')); 
-const RedirectPage = lazy(() => import('@/services/RedirectPage'));
-const ProtectedRoute = lazy(() => import('@/utils/ProtectedRoute'));
+const Home = lazy(() => import('@pages/Home'));
+const LogIn = lazy(() => import('@pages/LogIn'));
+const NotFound = lazy(() => import('@pages/NotFound'));
+const SignUp = lazy(() => import('@pages/SignUp')); 
+const RedirectPage = lazy(() => import('@services/RedirectPage'));
+const ProtectedRoute = lazy(() => import('@utils/ProtectedRoute'));
+const Profile = lazy(() => import('@components/profile/Profile'));
+const NavBar = lazy(() => import('@components/home/NavBar'));
+const Chatbot = lazy(() => import('@layouts/Chatbot'));
 
-const NavBar = lazy(() => import('@/components/home/NavBar'));
-const Chatbot = lazy(() => import('@/layouts/Chatbot'));
 
-
-const PageAdmin = lazy(() => import('@/admin/PageAdmin'));
+const PageAdmin = lazy(() => import('@admin/PageAdmin'));
 
 const ProtectedLayout = ({ children }) => {
   return (
@@ -41,7 +41,11 @@ const App = () => {
               <Home />
             </ProtectedLayout>
           } />
-          
+          <Route path='/Profile' element={
+            <ProtectedLayout>
+              <Profile />
+            </ProtectedLayout>
+          } />
         </Route>
 
         <Route path='/login' element={<LogIn />} />

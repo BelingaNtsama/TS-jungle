@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import OrderStore from "@/stores/orderStore"
+import OrderStore from "@stores/orderStore"
 
 export const useOrders = () => {
   const { orders, isLoading, error, loadOrders, reorderItems, reset } = OrderStore()

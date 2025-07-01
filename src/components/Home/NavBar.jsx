@@ -3,9 +3,9 @@ import { motion } from 'framer-motion'
 import { themeChange } from 'theme-change'
 import { Leaf, LucideShoppingBag, Sun, Moon } from "lucide-react"
 import { Link } from "react-router"
-import PanierStore from '@/stores/panierStore'
-import ShoppingCart from '@/layouts/Panier'
-import { ANIMATION_VARIANTS } from '@/utils/animations'
+import PanierStore from '@stores/panierStore'
+import ShoppingCart from '@layouts/Panier'
+import { ANIMATION_VARIANTS } from '@utils/animations'
 
 
 export default function NavBar() {

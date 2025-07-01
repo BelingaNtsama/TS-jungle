@@ -1,5 +1,5 @@
 import {create} from 'zustand';
-import axiosInstance from '@/services/axiosInstance';
+import axiosInstance from '@services/axiosInstance';
 
  const useOrderStore = create((set) => ({
   // État initial

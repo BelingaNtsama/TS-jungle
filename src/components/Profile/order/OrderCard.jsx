@@ -1,9 +1,9 @@
 // src/components/orders/OrderCard.jsx
 import { motion } from "framer-motion"
-import {ANIMATION_VARIANTS} from "@/utils/animations"
-import { formatPrice } from "@/utils/formatters"
+import {ANIMATION_VARIANTS} from "@utils/animations"
+import { formatPrice } from "@utils/formatters"
 import { Eye, RotateCcw } from "lucide-react"
-import { getStatusBadge } from "@/utils/formatters"
+import { getStatusBadge } from "@utils/formatters"
 
 export default function OrderCard({ order, onViewDetails }) {
   return (
