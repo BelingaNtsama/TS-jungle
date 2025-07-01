@@ -44,7 +44,7 @@ const itemVariants = {
   }
 }
 
-export default function ProfileLayout() {
+const ProfileLayout = () => {
   const [activeTab, setActiveTab] = useState("profil")
 
   const renderContent = () => {
@@ -107,3 +107,5 @@ export default function ProfileLayout() {
     </motion.div>
   )
 }
+
+export default ProfileLayout
