@@ -9,7 +9,7 @@ const NotFound = lazy(() => import('@/pages/NotFound'));
 const SignUp = lazy(() => import('@/pages/SignUp')); 
 const RedirectPage = lazy(() => import('@/services/RedirectPage'));
 const ProtectedRoute = lazy(() => import('@/utils/ProtectedRoute'));
-const ProfileLayoutFake = lazy(() => import('@/components/profile/ProfileLayout'));
+const Profile = lazy(() => import('@/components/profile/ProfileLayout'));
 const NavBar = lazy(() => import('@/components/home/NavBar'));
 const Chatbot = lazy(() => import('@/layouts/Chatbot'));
 
@@ -43,7 +43,7 @@ function App() {
           } />
           <Route path='/Profile' element={
             <ProtectedLayout>
-              <ProfileLayoutFake />
+              <Profile />
             </ProtectedLayout>
           } />
         </Route>
