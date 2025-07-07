@@ -214,7 +214,7 @@ const useUserStore = create(
           hasLoaded: true
         });
         // 5. Nettoyer l'URL et rediriger vers /
-          window.location.href = 'http://localhost:5173/';
+          window.location.href = 'https://ts-jungle.vercel.app/';
       } catch (error) {
         console.error(error);
       }
