@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://expressj-ts-jungle.vercel.app/',
+  baseURL: 'https://expressj-ts-jungle-deploy.vercel.app/',
   withCredentials: true,
 });
 
