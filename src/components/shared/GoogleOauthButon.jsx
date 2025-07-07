@@ -7,7 +7,7 @@ export default function GoogleAuthButton({loading}) {
         type="button" 
         onClick={async ()=> {
           const url = await axiosInstance.get('/auth/google');
-           console.log(url)
+          window.location.href = url.data.url;
         }}
         disabled={loading}
         className="btn bg-white text-black border-[#e5e5e5] w-full"
