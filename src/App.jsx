@@ -1,71 +1,58 @@
 import { Routes, Route } from 'react-router';
 import { Suspense, lazy } from 'react';
-import { Toaster } from 'sonner';
-import LoadingSpinner from '@components/shared/LoadingSpinner';
-import ProtectedRoute from "@utils/ProtectedRoute"
 import './App.css';
 
-// Lazy imports avec regroupement logique
-const AuthPages = {
-  LogIn: lazy(() => import('@pages/LogIn')),
-  SignUp: lazy(() => import('@pages/SignUp')),
-};
-
-const MainPages = {
-  Home: lazy(() => import('@pages/Home')),
-  Profile: lazy(() => import('@pages/Profile')),
-  NotFound: lazy(() => import('@pages/NotFound')),
-  RedirectPage: lazy(() => import('@services/RedirectPage')),
-};
-
-const LayoutComponents = {
-  NavBar: lazy(() => import('@layouts/NavBar')),
-  Chatbot: lazy(() => import('@layouts/Chatbot')),
-};
-
-const AdminPage = lazy(() => import('@admin/PageAdmin'));
-
-// Layout composant séparé pour plus de clarté
-const ProtectedLayout = ({ children }) => (
-  <>
-    <Toaster richColors position="top-center" />
-    <LayoutComponents.NavBar />
-    <LayoutComponents.Chatbot />
-    <main className="main-content">{children}</main>
-  </>
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center min-h-screen bg-gray-50">
+    <div className="relative">
+      <div className="animate-spin rounded-full h-16 w-16 border-4 border-gray-200"></div>
+      <div className="animate-spin rounded-full h-16 w-16 border-4 border-green-600 border-t-transparent absolute top-0 left-0"></div>
+    </div>
+  </div>
 );
+
+// Layouts
+const ProtectedLayout = lazy(() => import('@layouts/ProtectedLayout'));
+
+// Pages
+const Home = lazy(() => import('@pages/Home'));
+const LogIn = lazy(() => import('@pages/LogIn'));
+const NotFound = lazy(() => import('@pages/NotFound'));
+const SignUp = lazy(() => import('@pages/SignUp')); 
+const Profile = lazy(() => import('@components/Profile/Profile'));
+const PageAdmin = lazy(() => import('@admin/PageAdmin'));
+
+// Utils & Services
+const RedirectPage = lazy(() => import('@services/RedirectPage'));
+const ProtectedRoute = lazy(() => import('@utils/ProtectedRoute'));
 
 const App = () => {
   return (
-    <Suspense fallback={<LoadingSpinner fullScreen />}>
+    <Suspense fallback={<LoadingSpinner />}>
       <Routes>
-        {/* Routes protégées */}
         <Route element={<ProtectedRoute />}>
-          <Route path="/" element={
+          <Route path='/' element={
             <ProtectedLayout>
-              <MainPages.Home />
+              <Home />
             </ProtectedLayout>
           } />
-          <Route path="/profile" element={
+          <Route path='/Profile' element={
             <ProtectedLayout>
-              <MainPages.Profile />
+              <Profile />
             </ProtectedLayout>
           } />
         </Route>
 
-        {/* Routes publiques */}
-        <Route path="/login" element={<AuthPages.LogIn />} />
-        <Route path="/signup" element={<AuthPages.SignUp />} />
-        <Route path="/redirect" element={<MainPages.RedirectPage />} />
+        <Route path='/login' element={<LogIn />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/redirect' element={<RedirectPage />} />
+        <Route path='/admin/*' element={<PageAdmin />} />
 
-        {/* Admin routes */}
-        <Route path="/admin/*" element={<AdminPage />} />
-
-        {/* 404 */}
-        <Route path="*" element={<MainPages.NotFound />} />
+      
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </Suspense>
   );
-};
+}
 
 export default App;
