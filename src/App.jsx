@@ -7,8 +7,8 @@ import './App.css';
 
 // Lazy imports avec regroupement logique
 const AuthPages = {
-  LogIn: lazy(() => import('@pages/auth/LogIn')),
-  SignUp: lazy(() => import('@pages/auth/SignUp')),
+  LogIn: lazy(() => import('@pages/LogIn')),
+  SignUp: lazy(() => import('@pages/SignUp')),
 };
 
 const MainPages = {
