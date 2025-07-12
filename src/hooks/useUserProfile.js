@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import defaultAvatar from '@assets/images/default-avatar.png';
+import defaultAvatar from '@assets/images/default-avatar';
 
 const useUserProfile = () => {
   const user = useMemo(() => {
