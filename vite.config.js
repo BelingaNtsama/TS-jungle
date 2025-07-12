@@ -16,7 +16,8 @@ export default defineConfig({
     "@stores": path.resolve(__dirname, "./src/stores"),
     "@layouts": path.resolve(__dirname, "./src/layouts"),
     "@mockStore" : path.resolve(__dirname, './src/mockStore'),
-    "@admin" : path.resolve(__dirname, './src/admin')
+    "@admin" : path.resolve(__dirname, './src/admin'),
+    "@assets" : path.resolve(__dirname, "./src/assets")
     },
   },
 })
