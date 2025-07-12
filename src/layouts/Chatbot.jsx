@@ -245,7 +245,7 @@ const AiChat = () => {
     <motion.div
       ref={chatRef}
       className={`fixed z-50 ${isMobile 
-        ? 'inset-0 w-full h-full' 
+        ? 'inset-0 w-screen h-screen' 
         : 'w-full max-w-xs md:max-w-sm cursor-move'}`}
       style={isMobile 
         ? undefined 
@@ -257,8 +257,9 @@ const AiChat = () => {
       initial={isMobile ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
       animate={{
         opacity: 1,
-        scale: isMobile ? 1 : 1,
-        height: isMinimized ? "auto" : isMobile ? "100%" : "600px"
+        scale: 1,
+        height: isMinimized ? "auto" : "100%",
+        width: isMobile ? "100%" : "auto"
       }}
       exit={isMobile ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -327,7 +328,7 @@ const AiChat = () => {
 
         {!isMinimized && (
           <>
-            <div className="messages-container flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-white to-gray-50 max-h-96">
+            <div className={`messages-container flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-white to-gray-50 ${!isMobile ? 'max-h-96' : ''}`}>
               <AnimatePresence>
                 {messages.map((message, index) => (
                   <motion.div
