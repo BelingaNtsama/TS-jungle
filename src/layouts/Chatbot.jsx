@@ -37,6 +37,7 @@ const AiChat = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [isSoundEnabled, setIsSoundEnabled] = useState(true);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -191,13 +192,16 @@ const AiChat = () => {
     return (
       <motion.div
         ref={chatRef}
-        className="fixed z-50 cursor-move"
-        style={{
-          left: `${position.x}px`,
-          top: `${position.y}px`,
-          transform: 'translate(-50%, -50%)'
-        }}
-        onMouseDown={handleMouseDown}
+        className={`fixed z-50 ${isMobile ? 'bottom-4 right-4' : 'cursor-move'}`}
+        style={isMobile 
+          ? undefined 
+          : {
+              left: `${position.x}px`,
+              top: `${position.y}px`,
+              transform: 'translate(-50%, -50%)'
+            }
+        }
+        onMouseDown={!isMobile ? handleMouseDown : undefined}
       >
         <motion.button
           whileHover={{ scale: 1.1 }}
@@ -240,23 +244,27 @@ const AiChat = () => {
   return (
     <motion.div
       ref={chatRef}
-      className="fixed z-50 w-full max-w-xs md:max-w-sm cursor-move"
-      style={{
-        left: `${position.x}px`,
-        top: `${position.y}px`,
-        transform: 'translate(-50%, -50%)'
-      }}
-      initial={{ opacity: 0, scale: 0.8 }}
+      className={`fixed z-50 ${isMobile 
+        ? 'inset-0 w-full h-full' 
+        : 'w-full max-w-xs md:max-w-sm cursor-move'}`}
+      style={isMobile 
+        ? undefined 
+        : {
+            left: `${position.x}px`,
+            top: `${position.y}px`,
+            transform: 'translate(-50%, -50%)'
+          }}
+      initial={isMobile ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
       animate={{
         opacity: 1,
-        scale: 1,
-        height: isMinimized ? "auto" : "600px"
+        scale: isMobile ? 1 : 1,
+        height: isMinimized ? "auto" : isMobile ? "100%" : "600px"
       }}
-      exit={{ opacity: 0, scale: 0.8 }}
+      exit={isMobile ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
       onMouseDown={handleMouseDown}
     >
-      <div className="bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-gray-100 h-full">
+      <div className={`bg-white flex flex-col overflow-hidden border border-gray-100 h-full ${!isMobile ? 'rounded-3xl shadow-2xl' : ''}`}>
         <motion.div className="bg-gradient-to-r from-green-600 to-teal-600 p-4 text-white relative overflow-hidden">
           <div className="flex items-center justify-between relative z-10">
             <div className="flex items-center space-x-3">
