@@ -1,63 +1,71 @@
 import { Routes, Route } from 'react-router';
 import { Suspense, lazy } from 'react';
 import { Toaster } from 'sonner';
+import LoadingSpinner from '@components/shared/LoadingSpinner';
 import './App.css';
 
-const Home = lazy(() => import('@pages/Home'));
-const LogIn = lazy(() => import('@pages/LogIn'));
-const NotFound = lazy(() => import('@pages/NotFound'));
-const SignUp = lazy(() => import('@pages/SignUp')); 
-const RedirectPage = lazy(() => import('@services/RedirectPage'));
-const ProtectedRoute = lazy(() => import('@utils/ProtectedRoute'));
-const Profile = lazy(() => import('@components/Profile/Profile'));
-const NavBar = lazy(() => import('@components/Home/NavBar'));
-const Chatbot = lazy(() => import('@layouts/Chatbot'));
-
-
-const PageAdmin = lazy(() => import('@admin/PageAdmin'));
-
-const ProtectedLayout = ({ children }) => {
-  return (
-    <>
-    <Toaster richColors position="top-center" />
-      <NavBar />
-      <Chatbot />
-      {children}
-    </>
-  );
+// Lazy imports avec regroupement logique
+const AuthPages = {
+  LogIn: lazy(() => import('@pages/auth/LogIn')),
+  SignUp: lazy(() => import('@pages/auth/SignUp')),
 };
+
+const MainPages = {
+  Home: lazy(() => import('@pages/Home')),
+  Profile: lazy(() => import('@pages/Profile')),
+  NotFound: lazy(() => import('@pages/NotFound')),
+  RedirectPage: lazy(() => import('@services/RedirectPage')),
+};
+
+const LayoutComponents = {
+  NavBar: lazy(() => import('@layouts/NavBar')),
+  Chatbot: lazy(() => import('@layouts/Chatbot')),
+};
+
+const AdminPage = lazy(() => import('@admin/PageAdmin'));
+const ProtectedRoute = lazy(() => import('@routing/ProtectedRoute'));
+
+// Layout composant séparé pour plus de clarté
+const ProtectedLayout = ({ children }) => (
+  <>
+    <Toaster richColors position="top-center" />
+    <LayoutComponents.NavBar />
+    <LayoutComponents.Chatbot />
+    <main className="main-content">{children}</main>
+  </>
+);
 
 const App = () => {
   return (
-    <Suspense fallback={
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-700"></div>
-      </div>
-    }>
+    <Suspense fallback={<LoadingSpinner fullScreen />}>
       <Routes>
+        {/* Routes protégées */}
         <Route element={<ProtectedRoute />}>
-          <Route path='/' element={
+          <Route path="/" element={
             <ProtectedLayout>
-              <Home />
+              <MainPages.Home />
             </ProtectedLayout>
           } />
-          <Route path='/Profile' element={
+          <Route path="/profile" element={
             <ProtectedLayout>
-              <Profile />
+              <MainPages.Profile />
             </ProtectedLayout>
           } />
         </Route>
 
-        <Route path='/login' element={<LogIn />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/redirect' element={<RedirectPage />} />
-        <Route path='/admin/*' element={<PageAdmin />} />
+        {/* Routes publiques */}
+        <Route path="/login" element={<AuthPages.LogIn />} />
+        <Route path="/signup" element={<AuthPages.SignUp />} />
+        <Route path="/redirect" element={<MainPages.RedirectPage />} />
 
-      
-        <Route path='*' element={<NotFound />} />
+        {/* Admin routes */}
+        <Route path="/admin/*" element={<AdminPage />} />
+
+        {/* 404 */}
+        <Route path="*" element={<MainPages.NotFound />} />
       </Routes>
     </Suspense>
   );
-}
+};
 
 export default App;

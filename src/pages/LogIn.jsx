@@ -22,10 +22,7 @@ const LogIn = () => {
   const [errors, setErrors] = useState({});
 
   const validateForm = () => {
-    const newErrors = {};
-    if (!formData.email.trim()) newErrors.email = "L'email est requis";
-    else if (!/^\S+@\S+\.\S+$/.test(formData.email)) newErrors.email = "Email invalide";
-    
+    const newErrors = {};    
     if (authMethod === "password" && !formData.password)
       newErrors.password = "Le mot de passe est requis";
     
@@ -42,14 +39,12 @@ const LogIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
-
     try {
-      setLoading(true);
-      
       if (authMethod === "password") {
         let { data } = await axiosInstance.post("/auth/login", formData);
         data = JSON.stringify(data)
         localStorage.setItem("user", data);
+        setLoading(true);
         setTimeout(() => {
           window.location.href = "/";
         }, 1000);

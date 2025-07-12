@@ -129,3 +129,37 @@ export const SKELETON_VARIANTS = {
     actions: "skeleton h-8 w-16",
   },
 }
+
+
+export const stepVariants = {
+  hidden: { opacity: 0, x: 50, scale: 0.95 },
+  visible: { 
+    opacity: 1, 
+    x: 0, 
+    scale: 1, 
+    transition: { 
+      duration: 0.4, 
+      ease: "easeOut" 
+    }
+  },
+  exit: { 
+    opacity: 0, 
+    x: -50, 
+    scale: 0.95, 
+    transition: { 
+      duration: 0.3, 
+      ease: "easeIn" 
+    }
+  }
+};
+
+export const containerVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
