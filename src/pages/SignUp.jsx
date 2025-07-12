@@ -5,7 +5,7 @@ import { parsePhoneNumber } from 'react-phone-number-input';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import { 
-  User, Mail, Phone, MapPin, Home, Bell, Gift, Shield, AlertCircle, Sparkles 
+  User, Mail, MapPin, Home, Bell, Gift, Shield, AlertCircle, Sparkles, LockIcon 
 } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { toast } from 'sonner';
@@ -214,6 +214,7 @@ const personalInfoFields = [
     label: 'Mot de passe *',
     type: 'password',
     placeholder: '••••••••',
+    icon : LockIcon,
     rules: {
       required: 'Le mot de passe est requis',
       minLength: { 
@@ -227,6 +228,7 @@ const personalInfoFields = [
     label: 'Confirmer le mot de passe *',
     type: 'password',
     placeholder: '••••••••',
+    icon : LockIcon,
     rules: {
       required: 'La confirmation est requise',
       validate: value => 
