@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router';
 import { Suspense, lazy } from 'react';
 import { Toaster } from 'sonner';
 import LoadingSpinner from '@components/shared/LoadingSpinner';
+import ProtectedRoute from "@utils/ProtectedRoute"
 import './App.css';
 
 // Lazy imports avec regroupement logique
@@ -23,7 +24,6 @@ const LayoutComponents = {
 };
 
 const AdminPage = lazy(() => import('@admin/PageAdmin'));
-const ProtectedRoute = lazy(() => import('@routing/ProtectedRoute'));
 
 // Layout composant séparé pour plus de clarté
 const ProtectedLayout = ({ children }) => (
