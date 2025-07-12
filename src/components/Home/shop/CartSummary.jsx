@@ -15,7 +15,7 @@ const CartSummary = ({ subtotal, shipping, total, setIsPaymentModalOpen}) => (
       </div>
     </div>
 
-    <button className="btn bg-green-600 w-full text-white"
+    <button className="btn bg-secondary w-full text-white"
      onClick={() => setIsPaymentModalOpen(true)}>
       Proceed to Checkout
     </button>

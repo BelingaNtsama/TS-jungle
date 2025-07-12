@@ -14,7 +14,7 @@ const PlantImage = ({ image, name }) => (
 const PlantInfo = ({ name, category, onRemove }) => (
   <div className="flex justify-between">
     <div>
-      <h3 className="text-lg font-medium text-base-content group-hover:text-gray-500 transition-colors">
+      <h3 className="text-lg font-medium text-base-content group-hover:text-neutral transition-colors">
         {name}
       </h3>
       <p className="text-sm text-base-content/70">{category}</p>

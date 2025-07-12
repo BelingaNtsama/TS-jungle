@@ -37,7 +37,7 @@ const PlantGrid = ({ currentPlants }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
-          className="text-center text-gray-500 col-span-full"
+          className="text-center text-neutral col-span-full"
         >
           Aucune plante trouvée.
         </motion.p>
