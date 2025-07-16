@@ -26,7 +26,7 @@ const addressFields = [
     label: 'Nom de l\'adresse',
     type: 'text',
     placeholder: 'Domicile, Bureau...',
-    icon: <Home className="w-4 h-4 md:w-5 md:h-5 text-base-content/50" />,
+    icon: Home,
     rules: {
       required: false
     }
@@ -36,7 +36,7 @@ const addressFields = [
     label: 'Adresse complète *',
     type: 'text',
     placeholder: '123 Rue de la Paix, Appartement 4B',
-    icon: <MapPin className="w-4 h-4 md:w-5 md:h-5 text-base-content/50" />,
+    icon: MapPin,
     rules: {
       required: 'L\'adresse est requise',
       minLength: { value: 5, message: 'Au moins 5 caractères' }
@@ -353,7 +353,7 @@ const personalInfoFields = [
                   value={value}
                   onChange={onChange}
                   error={errors[field.name]?.message}
-                  icon={field.icon}
+                  icon={field.icon ? <field.icon className="w-4 h-4 md:w-5 md:h-5 text-base-content/50" /> : null}
                   inputClassName={field.icon ? "pl-10 md:pl-12" : ""}
                 />
               )}
