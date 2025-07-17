@@ -504,14 +504,13 @@ const personalInfoFields = [
           title="Confirmation finale"
           description="Vérifiez vos informations avant soumission"
         />
-        
         <div className="bg-base-200 p-6 rounded-lg">
           <h3 className="font-bold text-lg mb-4">Récapitulatif</h3>
           <div className="space-y-2">
-            <p><strong>Nom:</strong> {watch('first_name')} {watch('last_name')}</p>
-            <p><strong>Email:</strong> {watch('email')}</p>
-            <p><strong>Téléphone:</strong> {watch('phone')}</p>
-            <p><strong>Adresse:</strong> {watch('street')}, {watch('postal_code')} {watch('city')}, {watch('country')}</p>
+            <p><strong>Nom:</strong> {(watch('first_name') || '') + ' ' + (watch('last_name') || '')}</p>
+            <p><strong>Email:</strong> {watch('email') || ''}</p>
+            <p><strong>Téléphone:</strong> {watch('phone') || ''}</p>
+            <p><strong>Adresse:</strong> {(watch('street') || '') + ', ' + (watch('postal_code') || '') + ' ' + (watch('city') || '') + ', ' + (watch('country') || '')}</p>
             <p><strong>Préférences:</strong> 
               {watch('newsletter') ? ' Newsletter,' : ''}
               {watch('offer') ? ' Offres spéciales,' : ''}
