@@ -26,7 +26,7 @@ const addressFields = [
     label: 'Nom de l\'adresse',
     type: 'text',
     placeholder: 'Domicile, Bureau...',
-    icon: Home,
+    Icon: Home,
     rules: {
       required: false
     }
@@ -36,7 +36,7 @@ const addressFields = [
     label: 'Adresse complète *',
     type: 'text',
     placeholder: '123 Rue de la Paix, Appartement 4B',
-    icon: MapPin,
+    Icon: MapPin,
     rules: {
       required: 'L\'adresse est requise',
       minLength: { value: 5, message: 'Au moins 5 caractères' }
@@ -79,21 +79,21 @@ const addressFields = [
 const preferenceCards = [
   {
     name: 'newsletter',
-    icon: Bell,
+    Icon: Bell,
     title: 'Newsletter',
     description: 'Recevez nos dernières actualités et conseils',
     color: 'primary'
   },
   {
     name: 'offer',
-    icon: Gift,
+    Icon: Gift,
     title: 'Offres spéciales',
     description: 'Soyez informé de nos promotions exclusives',
     color: 'secondary'
   },
   {
     name: 'twoFactorAuth',
-    icon: Shield,
+    Icon: Shield,
     title: 'Authentification 2FA',
     description: 'Renforcez la sécurité de votre compte',
     color: 'accent'
@@ -104,7 +104,7 @@ const stepsConfig = [
   { 
     number: 1, 
     title: 'Informations', 
-    icon: User, 
+    Icon: User, 
     description: 'Données personnelles',
     fields: ['first_name', 'last_name', 'email', 'password', 'confirmPassword', 'phone'],
     component: 'PersonalInfoStep'
@@ -112,7 +112,7 @@ const stepsConfig = [
   { 
     number: 2, 
     title: 'Adresse', 
-    icon: MapPin, 
+    Icon: MapPin, 
     description: 'Livraison',
     fields: ['address_name', 'street', 'postal_code', 'city', 'country'],
     component: 'AddressStep'
@@ -120,7 +120,7 @@ const stepsConfig = [
   { 
     number: 3, 
     title: 'Préférences', 
-    icon: Bell, 
+    Icon: Bell, 
     description: 'Personnalisation',
     fields: ['newsletter', 'offer', 'twoFactorAuth'],
     component: 'PreferencesStep'
@@ -128,7 +128,7 @@ const stepsConfig = [
   { 
     number: 4, 
     title: 'Confirmation', 
-    icon: Shield, 
+    Icon: Shield, 
     description: 'Validation finale',
     component: 'ConfirmationStep'
   }
@@ -178,7 +178,7 @@ const personalInfoFields = [
     label: 'Prénom *',
     type: 'text',
     placeholder: 'Jean',
-    icon: <User className="w-4 h-4 md:w-5 md:h-5 text-base-content/50" />,
+    Icon: <User className="w-4 h-4 md:w-5 md:h-5 text-base-content/50" />,
     rules: {
       required: 'Le prénom est requis',
       minLength: { value: 2, message: 'Au moins 2 caractères' }
@@ -189,7 +189,7 @@ const personalInfoFields = [
     label: 'Nom *',
     type: 'text',
     placeholder: 'Dupont',
-    icon: <User className="w-4 h-4 md:w-5 md:h-5 text-base-content/50" />,
+    Icon: <User className="w-4 h-4 md:w-5 md:h-5 text-base-content/50" />,
     rules: {
       required: 'Le nom est requis',
       minLength: { value: 2, message: 'Au moins 2 caractères' }
@@ -200,7 +200,7 @@ const personalInfoFields = [
     label: 'Adresse email *',
     type: 'email',
     placeholder: 'jean.dupont@email.com',
-    icon: <Mail className="w-4 h-4 md:w-5 md:h-5 text-base-content/50" />,
+    Icon: <Mail className="w-4 h-4 md:w-5 md:h-5 text-base-content/50" />,
     rules: {
       required: 'L\'email est requis',
       pattern: { 
@@ -214,7 +214,7 @@ const personalInfoFields = [
     label: 'Mot de passe *',
     type: 'password',
     placeholder: '••••••••',
-    icon : LockIcon,
+    Icon : LockIcon,
     rules: {
       required: 'Le mot de passe est requis',
       minLength: { 
@@ -228,7 +228,7 @@ const personalInfoFields = [
     label: 'Confirmer le mot de passe *',
     type: 'password',
     placeholder: '••••••••',
-    icon : LockIcon,
+    Icon : LockIcon,
     rules: {
       required: 'La confirmation est requise',
       validate: value => 
@@ -353,8 +353,8 @@ const personalInfoFields = [
                   value={value}
                   onChange={onChange}
                   error={errors[field.name]?.message}
-                  icon={field.icon ? <field.icon className="w-4 h-4 md:w-5 md:h-5 text-base-content/50" /> : null}
-                  inputClassName={field.icon ? "pl-10 md:pl-12" : ""}
+                  Icon={field.Icon ? <field.Icon className="w-4 h-4 md:w-5 md:h-5 text-base-content/50" /> : null}
+                  inputClassName={field.Icon ? "pl-10 md:pl-12" : ""}
                 />
               )}
             />
@@ -426,8 +426,8 @@ const personalInfoFields = [
                 value={value}
                 onChange={onChange}
                 error={errors[field.name]?.message}
-                icon={field.icon}
-                inputClassName={field.icon ? "pl-10 md:pl-12" : ""}
+                Icon={field.Icon}
+                inputClassName={field.Icon ? "pl-10 md:pl-12" : ""}
               />
             )}
           />
@@ -458,7 +458,7 @@ const personalInfoFields = [
               control={control}
               render={({ field }) => (
                 <PreferenceToggleCard
-                  icon={card.icon}
+                  Icon={card.Icon}
                   title={card.title}
                   description={card.description}
                   color={card.color}
