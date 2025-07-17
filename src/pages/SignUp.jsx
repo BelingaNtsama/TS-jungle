@@ -5,7 +5,7 @@ import { parsePhoneNumber } from 'react-phone-number-input';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import { 
-  User, Mail, MapPin, Home, Bell, Gift, Shield, AlertCircle, Sparkles, LockIcon 
+  User, Mail, MapPin, Home, Bell, Gift, Shield, AlertCircle, Sparkles, LockIcon, Phone 
 } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { toast } from 'sonner';
@@ -178,7 +178,7 @@ const personalInfoFields = [
     label: 'Prénom *',
     type: 'text',
     placeholder: 'Jean',
-    Icon: <User className="w-4 h-4 md:w-5 md:h-5 text-base-content/50" />,
+    Icon: User,
     rules: {
       required: 'Le prénom est requis',
       minLength: { value: 2, message: 'Au moins 2 caractères' }
@@ -189,7 +189,7 @@ const personalInfoFields = [
     label: 'Nom *',
     type: 'text',
     placeholder: 'Dupont',
-    Icon: <User className="w-4 h-4 md:w-5 md:h-5 text-base-content/50" />,
+    Icon: User,
     rules: {
       required: 'Le nom est requis',
       minLength: { value: 2, message: 'Au moins 2 caractères' }
@@ -200,7 +200,7 @@ const personalInfoFields = [
     label: 'Adresse email *',
     type: 'email',
     placeholder: 'jean.dupont@email.com',
-    Icon: <Mail className="w-4 h-4 md:w-5 md:h-5 text-base-content/50" />,
+    Icon: Mail,
     rules: {
       required: 'L\'email est requis',
       pattern: { 
@@ -214,7 +214,7 @@ const personalInfoFields = [
     label: 'Mot de passe *',
     type: 'password',
     placeholder: '••••••••',
-    Icon : LockIcon,
+    Icon: LockIcon,
     rules: {
       required: 'Le mot de passe est requis',
       minLength: { 
@@ -228,7 +228,7 @@ const personalInfoFields = [
     label: 'Confirmer le mot de passe *',
     type: 'password',
     placeholder: '••••••••',
-    Icon : LockIcon,
+    Icon: LockIcon,
     rules: {
       required: 'La confirmation est requise',
       validate: value => 

@@ -6,7 +6,7 @@ import { Check } from 'lucide-react';
     <div className="flex justify-center mb-12">
       <div className="flex items-center space-x-4">
         {steps.map((step, index) => {
-          const Icon = step.icon;
+          const Icon = step.Icon;
           const isActive = currentStep === step.number;
           const isCompleted = currentStep > step.number;
           
