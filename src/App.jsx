@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router';
 import { Suspense, lazy } from 'react';
 import './App.css';
+import Footer from '@components/shared/Footer';
 
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-screen bg-gray-50">
@@ -51,6 +52,7 @@ const App = () => {
       
         <Route path='*' element={<NotFound />} />
       </Routes>
+      <Footer />
     </Suspense>
   );
 }
