@@ -5,15 +5,10 @@ import { toast } from 'sonner';
 import {
   Edit,
   Trash2,
-  Eye,
-  MoreHorizontal,
   Package,
   AlertTriangle,
   CheckCircle,
   Download,
-  Plus,
-  Copy,
-  Archive,
   RefreshCw,
 } from 'lucide-react';
 import 'ag-grid-community/styles/ag-grid.css';
@@ -125,53 +120,29 @@ const SalesRenderer = ({ value }) => (
 );
 
 // Composant pour les actions
-const ActionRenderer = ({ data, onEdit, onDelete, onView, onDuplicate, onArchive }) => {
-  const [showMenu, setShowMenu] = useState(false);
+import ProductModal from './product-modal';
 
-  const actions = [
-    { icon: Eye, label: 'Voir', action: onView, color: 'text-blue-600 hover:bg-blue-50' },
-    { icon: Edit, label: 'Modifier', action: onEdit, color: 'text-green-600 hover:bg-green-50' },
-    { icon: Copy, label: 'Dupliquer', action: onDuplicate, color: 'text-purple-600 hover:bg-purple-50' },
-    { icon: Archive, label: 'Archiver', action: onArchive, color: 'text-yellow-600 hover:bg-yellow-50' },
-    { icon: Trash2, label: 'Supprimer', action: onDelete, color: 'text-red-600 hover:bg-red-50' },
-  ];
-
+const ActionRenderer = ({ data, onEditClick, onDeleteClick }) => {
   return (
-    <div className="relative">
+    <div className="flex gap-2 items-center justify-center">
       <motion.button
         whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={() => setShowMenu(!showMenu)}
-        className="p-3 hover:bg-gray-100 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md"
+        whileTap={{ scale: 0.95 }}
+        onClick={() => onEditClick(data)}
+        className="p-2 rounded-xl hover:bg-green-50 text-green-600 transition-all"
+        title="Modifier"
       >
-        <MoreHorizontal className="w-5 h-5 text-gray-600" />
+        <Edit className="w-5 h-5" />
       </motion.button>
-
-      <AnimatePresence>
-        {showMenu && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: -10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: -10 }}
-            className="absolute right-0 top-full mt-2 bg-white border border-gray-200 rounded-2xl shadow-2xl z-20 min-w-[160px] overflow-hidden"
-          >
-            {actions.map((action, index) => (
-              <motion.button
-                key={index}
-                whileHover={{ x: 4 }}
-                onClick={() => {
-                  action.action(data);
-                  setShowMenu(false);
-                }}
-                className={`w-full px-4 py-3 text-left text-sm flex items-center space-x-3 transition-all duration-200 ${action.color}`}
-              >
-                <action.icon className="w-4 h-4" />
-                <span className="font-medium">{action.label}</span>
-              </motion.button>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={() => onDeleteClick(data)}
+        className="p-2 rounded-xl hover:bg-red-50 text-red-600 transition-all"
+        title="Supprimer"
+      >
+        <Trash2 className="w-5 h-5" />
+      </motion.button>
     </div>
   );
 };
@@ -187,9 +158,6 @@ const ProductsTable = () => {
     fetchProducts,
     handleEdit,
     handleDelete,
-    handleView,
-    handleDuplicate,
-    handleArchive,
     handleBulkDelete,
     handleRefresh,
   } = useProductsStore();
@@ -197,14 +165,16 @@ const ProductsTable = () => {
   // State pour le modal de suppression
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [rowToDelete, setRowToDelete] = useState(null);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [rowToEdit, setRowToEdit] = useState(null);
 
-  // Handler pour ouvrir le modal
+  // Handler pour ouvrir le modal de suppression
   const openDeleteModal = (row) => {
     setRowToDelete(row);
     setDeleteModalOpen(true);
   };
 
-  // Handler pour fermer le modal
+  // Handler pour fermer le modal de suppression
   const closeDeleteModal = () => {
     setDeleteModalOpen(false);
     setRowToDelete(null);
@@ -214,6 +184,25 @@ const ProductsTable = () => {
   const confirmDelete = (id) => {
     handleDelete(id);
     toast.success('Produit supprimé avec succès');
+  };
+
+  // Handler pour ouvrir le modal d'édition
+  const openEditModal = (row) => {
+    setRowToEdit(row);
+    setEditModalOpen(true);
+  };
+
+  // Handler pour fermer le modal d'édition
+  const closeEditModal = () => {
+    setEditModalOpen(false);
+    setRowToEdit(null);
+  };
+
+  // Handler pour sauvegarder la modification
+  const handleSaveEdit = (updatedProduct) => {
+    handleEdit(updatedProduct);
+    toast.success('Produit modifié avec succès');
+    closeEditModal();
   };
 
   useEffect(() => {
@@ -283,11 +272,8 @@ const ProductsTable = () => {
       cellRenderer: (params) => (
         <ActionRenderer
           data={params.data}
-          onEdit={handleEdit}
-          onDelete={openDeleteModal}
-          onView={handleView}
-          onDuplicate={handleDuplicate}
-          onArchive={handleArchive}
+          onEditClick={openEditModal}
+          onDeleteClick={openDeleteModal}
         />
       ),
       width: 100,
@@ -326,6 +312,13 @@ const ProductsTable = () => {
         selectedRow={rowToDelete}
         onDelete={confirmDelete}
       />
+      {/* Modal d'édition de produit */}
+      <ProductModal
+        isOpen={editModalOpen}
+        onClose={closeEditModal}
+        product={rowToEdit}
+        onSave={handleSaveEdit}
+      />
       <div className="p-8 border-b border-gray-100 bg-gradient-to-r from-gray-50 via-white to-gray-50">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
           <div className="flex gap-3">
@@ -361,15 +354,6 @@ const ProductsTable = () => {
             >
               <Download className="w-4 h-4" />
               <span>Exporter</span>
-            </motion.button>
-
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-4 py-3 bg-green-600 text-white rounded-2xl hover:bg-green-700 transition-all duration-200 flex items-center space-x-2 shadow-lg hover:shadow-xl"
-            >
-              <Plus className="w-4 h-4" />
-              <span>Ajouter</span>
             </motion.button>
           </div>
         </div>

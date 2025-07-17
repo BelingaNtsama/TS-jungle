@@ -10,7 +10,6 @@ import {
   Download,
   TrendingUp,
   Users,
-  DollarSign,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import useCustomerStore from '@admin/stores/customerStore';
@@ -304,24 +303,6 @@ const Customers = () => {
                 <div className="flex items-center gap-1 text-warning">
                   <Star className="h-4 w-4 fill-current" />
                   <span className="text-sm">+{Math.floor(stats.vip / stats.total * 100)}%</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            whileHover={{ scale: 1.02, y: -2 }}
-            className="bg-white p-6 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            <div className="flex items-center space-x-4">
-              <div className="p-3 bg-blue-100 rounded-2xl">
-                <DollarSign className="w-6 h-6 text-blue-600" />
-              </div>
-              <div>
-                <p className="text-sm text-gray-600 font-medium">Chiffre d'affaires</p>
-                <p className="text-2xl font-bold text-gray-900">€{stats.totalRevenue.toFixed(2)}</p>
-                <div className={`flex items-center gap-1 ${growthRate.revenue > 0 ? 'text-success' : 'text-error'}`}>
-                  <span className="text-sm">{Math.abs(growthRate.revenue)}%</span>
                 </div>
               </div>
             </div>

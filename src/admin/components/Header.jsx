@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { Plus, Leaf } from 'lucide-react';
 
 export function Header({ onAddProduct }) {
