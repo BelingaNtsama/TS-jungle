@@ -307,8 +307,8 @@ const personalInfoFields = [
       });
 
       console.log('Inscription réussie:', response.data);
-      setCurrentStep(5);
-      setTimeout(() => navigate('/login'), 5000);
+      setCurrentStep(6);
+      setTimeout(() => navigate('/'), 4000);
     } catch (error) {
       console.error('Erreur lors de l\'inscription:', error);
       toast.error(error.response?.data?.error || 'Erreur lors de l\'inscription');
@@ -541,7 +541,7 @@ const personalInfoFields = [
     ConfirmationStep: renderConfirmationStep
   };
 
-  if (currentStep === 5) {
+  if (currentStep === 6) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-base-200 via-base-100 to-base-200 py-6 md:py-8">
         <div className="max-w-md mx-auto px-4">
@@ -552,7 +552,8 @@ const personalInfoFields = [
           >
             <div className="card-body p-6 md:p-8">
               <SuccessStep 
-                message="Bienvenue dans la communauté ! Redirection en cours..."
+                title="Inscription réussie !"
+                message="Vous allez être redirigé vers la page d'accueil."
               />
             </div>
           </motion.div>

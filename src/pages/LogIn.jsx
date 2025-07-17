@@ -20,6 +20,7 @@ const LogIn = () => {
   const [loading, setLoading] = useState(false);
   const [authMethod, setAuthMethod] = useState("password");
   const [errors, setErrors] = useState({});
+  const [success, setSuccess] = useState(false);
 
   const validateForm = () => {
     const newErrors = {};    
@@ -44,10 +45,10 @@ const LogIn = () => {
         let { data } = await axiosInstance.post("/auth/login", formData);
         data = JSON.stringify(data)
         localStorage.setItem("user", data);
-        setLoading(true);
+        setSuccess(true);
         setTimeout(() => {
           window.location.href = "/";
-        }, 1000);
+        }, 2000);
   
       } else if (authMethod === "magiclink") {
         await axiosInstance.post("/auth/magiclink", { email: formData.email });
@@ -60,8 +61,8 @@ const LogIn = () => {
     }
   };
 
-  if(loading){
-    return <SuccessStep message="Connexion en cours..." />;
+  if(success){
+    return <SuccessStep title="Connexion réussie !" message="Vous allez être redirigé vers la page d'accueil." />;
   }
   return (
     <div className="min-h-screen bg-base-200 flex items-center justify-center p-4">
