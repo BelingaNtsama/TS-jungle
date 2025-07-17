@@ -22,6 +22,7 @@ import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 ModuleRegistry.registerModules([AllCommunityModule]) 
 
 import useProductsStore from '@admin/stores/plantStore';
+import DeleteConfirmModal from './delete-confirm-modal';
 
 // Composant pour l'image avec fallback
 const ImageRenderer = ({ value }) => (
@@ -176,6 +177,7 @@ const ActionRenderer = ({ data, onEdit, onDelete, onView, onDuplicate, onArchive
 };
 
 const ProductsTable = () => {
+
   const {
     products,
     searchText,
@@ -191,6 +193,28 @@ const ProductsTable = () => {
     handleBulkDelete,
     handleRefresh,
   } = useProductsStore();
+
+  // State pour le modal de suppression
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [rowToDelete, setRowToDelete] = useState(null);
+
+  // Handler pour ouvrir le modal
+  const openDeleteModal = (row) => {
+    setRowToDelete(row);
+    setDeleteModalOpen(true);
+  };
+
+  // Handler pour fermer le modal
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
+    setRowToDelete(null);
+  };
+
+  // Handler pour supprimer le produit (utilise le store)
+  const confirmDelete = (id) => {
+    handleDelete(id);
+    toast.success('Produit supprimé avec succès');
+  };
 
   useEffect(() => {
     fetchProducts();
@@ -260,7 +284,7 @@ const ProductsTable = () => {
         <ActionRenderer
           data={params.data}
           onEdit={handleEdit}
-          onDelete={handleDelete}
+          onDelete={openDeleteModal}
           onView={handleView}
           onDuplicate={handleDuplicate}
           onArchive={handleArchive}
@@ -295,6 +319,13 @@ const ProductsTable = () => {
 
   return (
     <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+      {/* Modal de confirmation de suppression */}
+      <DeleteConfirmModal
+        isOpen={deleteModalOpen}
+        onClose={closeDeleteModal}
+        selectedRow={rowToDelete}
+        onDelete={confirmDelete}
+      />
       <div className="p-8 border-b border-gray-100 bg-gradient-to-r from-gray-50 via-white to-gray-50">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
           <div className="flex gap-3">

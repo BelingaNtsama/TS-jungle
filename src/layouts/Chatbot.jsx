@@ -255,7 +255,8 @@ const AiChat = () => {
           : {
               left: `${position.x}px`,
               top: `${position.y}px`,
-              transform: 'translate(-50%, -50%)'
+              transform: 'translate(-50%, -50%)',
+              display: isOpen ? 'block' : 'none'
             }}
         initial={isMobile ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
         animate={{
