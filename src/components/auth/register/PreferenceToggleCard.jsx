@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const PreferenceToggleCard = ({ 
-  icon: Icon,
+  Icon: Icon,
   title,
   description,
   color = 'primary',
